@@ -91,7 +91,7 @@ export default class Bingo {
     // if there are not done cards, remove localstorage
     // if (cards.length === 0) {
     
-    if (cards.length === 0) {
+    if (cards.length === 0 || cards.length >= 5) {
       // remove localstorage
       localStorage.clear();
     } 
