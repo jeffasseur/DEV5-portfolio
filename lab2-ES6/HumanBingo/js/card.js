@@ -13,6 +13,7 @@ export default class Card {
     console.log("Marking card as done");
     console.log(target);
     // hint: use class .bingo__card--done
+    target.classList.toggle('bingo__card--done');
   }
 
   render(counter) {
@@ -37,6 +38,8 @@ export default class Card {
     card.addEventListener("click", (e) => {
       // this.markDone(e.target);
       // call checkWinner() on the Bingo class
+      this.markDone(e.target);
+      Bingo.checkWinner();
       // try to call the save() method on the Bingo class
     });
   }
