@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -26,8 +28,6 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
@@ -94,4 +94,58 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Harrystyles/nostyles.css */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+}
+
+.bingo__board {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+}
+
+.bingo__title {
+  font-size: 2em;
+  text-align: center;
+  width: 100%;
+}
+
+.bingo__card {
+  border: 1px solid black;
+  flex: 1 0 20%;
+  height: 15vh;
+  font-size: 3vmin;
+  padding: 0.2em;
+  cursor: pointer;
+}
+
+.bingo__card--done {
+  text-decoration: line-through;
+}
+
+.bingo__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 5vmin;
+  display: none;
+}
+
+.bingo__overlay img {
+  width: 100%;
+  height: 100%;
 }
