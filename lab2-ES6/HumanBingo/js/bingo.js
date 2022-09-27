@@ -87,14 +87,26 @@ export default class Bingo {
     let cardsWon = [];
     console.log("Saving bingo to localstorage");
     // let cards = document.querySelectorAll(".bingo__card--done");
-
-    // if there are not done cards, remove localstorage
+    let cards = document.querySelectorAll('.bingo__card--done');
+    //❌ if there are not done cards, remove localstorage
     // if (cards.length === 0) {
-    // remove localstorage
-    // }
-
+    
+    if (cards.length === 0) {
+      // remove localstorage
+      localStorage.clear();
+    } 
+    else {
+      for (let i = 0; i < cards.length; i++) {
+        cardsWon.push(cards[i].getAttribute('data-number'));
+        console.log(cardsWon);
+      }
+    }
+    
+    console.log(cards);
     // save a selection like [1, 7, 8] to localstorage item "bingo"
+    localStorage.setItem('bingo', cardsWon);
     // you might want to check out how JSON.stringify() works
+    console.log(JSON.stringify({bingo: cardsWon}));
   }
 
   static load() {
