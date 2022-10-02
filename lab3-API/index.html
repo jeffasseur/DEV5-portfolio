@@ -4,9 +4,19 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>Cities near Location</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
+    <h1>GeoDB Cities</h1>
+    <div class="searchCities">
+      <h2 class="text-2xl">Search cities nearby</h2>
+      <div class="range flex items-center gap-4">
+        <label for="myRange">Select the radius</label>
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange" />
+      </div>
+    </div>
     <div id="app"></div>
     <script type="module" src="/main.js"></script>
   </body>
