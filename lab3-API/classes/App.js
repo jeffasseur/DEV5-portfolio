@@ -16,6 +16,29 @@ export default class App {
         );
     }
 
+    printCities(json) {
+        console.log(json);
+        let listCities = document.querySelector('.listCities');
+
+        json.forEach(element => {
+            let li = document.createElement('li');
+            let city = document.createElement('p');
+            let distance = document.createElement('span');
+
+            city.innerHTML = element.city;
+            distance.innerHTML = `${element.distance} km`;
+
+            city.classList.add('font-bold');
+
+            li.appendChild(city);
+            li.appendChild(distance);
+            li.classList.add('flex', 'gap-x-4');
+
+            listCities.appendChild(li);
+        }
+        );
+    }
+    
     locationSucces(loc) {
         console.log(loc);
         this.lat = loc.coords.latitude;
@@ -38,10 +61,11 @@ export default class App {
 		        'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
             }
         })
-        .then(res => res.json())
-        .then(data => console.log(data))
+        .then(res => {return res.json()})
+        .then(data => {this.printCities(data.data)})
         .catch(err => {
             console.error(err);
         });
     }
+
 }
