@@ -9,7 +9,7 @@ export default class App {
     }
 
     getLocation() {
-        console.log('Getting location...');
+        //console.log('Getting location...');
         navigator.geolocation.getCurrentPosition(
             this.locationSucces.bind(this),
             this.locationError.bind(this)
@@ -17,7 +17,7 @@ export default class App {
     }
 
     printCities(json) {
-        console.log(json);
+        //console.log(json);
         let listCities = document.querySelector('.listCities');
 
         json.forEach(element => {
@@ -40,7 +40,7 @@ export default class App {
     }
     
     locationSucces(loc) {
-        console.log(loc);
+        //console.log(loc);
         this.lat = loc.coords.latitude;
         this.lng = loc.coords.longitude;
         this.getCities();
