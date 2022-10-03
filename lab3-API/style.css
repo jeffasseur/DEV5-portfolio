@@ -25,12 +25,17 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  position: relative;
+  margin: 16px auto;
   display: flex;
   flex-direction: column;
   place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  width: 336px;
+  height: 429px;
+  background: #213547;
+  border-radius: .5rem;
+  font-size: 16px;
+  color: #FFF;
 }
 
 h1 {
