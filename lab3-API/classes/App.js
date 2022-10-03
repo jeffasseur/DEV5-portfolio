@@ -30,7 +30,18 @@ export default class App {
     getCities() {
         //console.log('🏬');
         let urlCities = `https://wft-geo-db.p.rapidapi.com/v1/geo/locations/${this.lat}-${this.lng}/nearbyCities?radius=${this.radius}`;
-        this.radius = document.querySelector('#myRange').value;
-        console.log(this.radius);
+
+        fetch(urlCities, {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': '446a5cb6f1mshe3be4fa8b0625e4p1ad412jsnca2e20050552',
+		        'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
+            }
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+        .catch(err => {
+            console.error(err);
+        });
     }
 }
