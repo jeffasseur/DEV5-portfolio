@@ -30,8 +30,8 @@ body {
   display: flex;
   flex-direction: column;
   place-items: center;
-  width: 336px;
-  height: 429px;
+  width: calc(336px *2);
+  height: calc(429px *2);
   background: #7eabd3;
   border-radius: .5rem;
   font-size: 16px;
