@@ -5,6 +5,7 @@ export default class Weather {
         this.lng = 0;
         this.getLocation();
         //console.log(`App is loaded with API_KEY: ${this.API_KEY}`);
+        this.weather = "";
     }
 
     getLocation() {
@@ -47,12 +48,14 @@ export default class Weather {
         }
     }
 
-    displayWeather(data) {
+    async displayWeather(data) {
         const title = document.querySelector('.weather__condition');
         const icon = document.querySelector('.weather__icon');
 
         title.innerHTML = data.current.condition.text;
         icon.src = data.current.condition.icon;
+
+        this.weather = data.current.condition.text;
     }
 
 }
