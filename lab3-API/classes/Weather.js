@@ -30,7 +30,7 @@ export default class Weather {
     }
 
     getWeather() {
-        const url = `http://api.weatherapi.com/v1/current.json?key=${this.API_KEY}&q=${this.lat},${this.lng}&aqi=no`;
+        const url = `https://api.weatherapi.com/v1/current.json?key=${this.API_KEY}&q=${this.lat},${this.lng}&aqi=no`;
 
         // check if location exists in local storage
         if (localStorage.getItem('weather') && Date.now() - localStorage.getItem('weatherTime') < 1000 * 60 * 60) {
