@@ -10,8 +10,17 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
+// make a simple house
+const geometry = new THREE.PlaneGeometry( 1, 1);
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
 
-scene.add( ambientLight, directionalLight );
+// make ambient light
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+
+
+scene.add( ambientLight );
 
 
 camera.position.z = 5;
@@ -19,12 +28,8 @@ camera.position.z = 5;
 function animate() {
   requestAnimationFrame( animate );
 
-  cube.rotation.x += 0.007;
-  cube.rotation.y += 0.007;
-
-  camera.position.x = 5 * Math.sin(Date.now() / 1000);
-  camera.position.y = 5 * Math.cos(Date.now() / 1000);
-  controls.update();
+  // cube.rotation.x += 0.007;
+  // cube.rotation.y += 0.007;
 
   renderer.render( scene, camera );
 };
