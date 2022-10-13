@@ -39,10 +39,17 @@ const wall4 = new THREE.Mesh( geometry4, material4 );
 wall4.position.set(0, 0, 5);
 wall4.rotateY(3.141592);
 
+// roof of the house
+const geometry5 = new THREE.ConeGeometry( 5, 2, 4 );
+const material5 = new THREE.MeshBasicMaterial( {color: 0x8B4513} );
+const roof = new THREE.Mesh( geometry5, material5 );
+roof.position.set(0, 3, 2.5);
+roof.rotateY(0.7853982);
+
 
 camera.position.set(0, 0, 5)
 
-scene.add( wall, wall2, wall3, wall4, light )
+scene.add( wall, wall2, wall3, wall4, roof, light )
 
 
 function animate() {
