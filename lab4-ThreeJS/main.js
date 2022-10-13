@@ -46,10 +46,24 @@ const roof = new THREE.Mesh( geometry5, material5 );
 roof.position.set(0, 3, 2.5);
 roof.rotateY(0.7853982);
 
+// floor of the house 
+const geometry6 = new THREE.PlaneGeometry( 5, 5);
+const material6 = new THREE.MeshBasicMaterial( {color: 0x00ff00, side: THREE.DoubleSide} );
+const floor = new THREE.Mesh( geometry6, material6 );
+floor.position.set(0, -2.5, 2.5);
+floor.rotateX(1.570796);
+
+// floor of the earth
+const geometry7 = new THREE.PlaneGeometry( 50, 50);
+const material7 = new THREE.MeshBasicMaterial( {color: 0xff0000, side: THREE.DoubleSide} );
+const earth = new THREE.Mesh( geometry7, material7 );
+earth.position.set(0, -2.5, 2.5);
+earth.rotateX(1.570796);
+
 
 camera.position.set(0, 0, 5)
 
-scene.add( wall, wall2, wall3, wall4, roof, light )
+scene.add( wall, wall2, wall3, wall4, roof, floor, earth, light )
 
 
 function animate() {
