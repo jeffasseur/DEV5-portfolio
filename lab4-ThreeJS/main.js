@@ -39,6 +39,13 @@ const wall4 = new THREE.Mesh( geometry4, material4 );
 wall4.position.set(0, 0, 5);
 wall4.rotateY(3.141592);
 
+// door of the house
+const geometry8 = new THREE.BoxGeometry( 1.5, 2.5, 0.02);
+const material8 = new THREE.MeshBasicMaterial( {color: 0x0000ff} );
+const door = new THREE.Mesh( geometry8, material8 );
+door.position.set(0, -1.25, 5.02);
+door.rotateY(3.141592);
+
 // roof of the house
 const geometry5 = new THREE.ConeGeometry( 5, 2, 4 );
 const material5 = new THREE.MeshBasicMaterial( {color: 0x8B4513} );
@@ -54,16 +61,24 @@ floor.position.set(0, -2.5, 2.5);
 floor.rotateX(1.570796);
 
 // floor of the earth
-const geometry7 = new THREE.PlaneGeometry( 50, 50);
-const material7 = new THREE.MeshBasicMaterial( {color: 0xff0000, side: THREE.DoubleSide} );
+const geometry7 = new THREE.PlaneGeometry( 100, 100);
+const earthTexture = new THREE.TextureLoader().load('/bump-grass.jpg');
+const material7 = new THREE.MeshBasicMaterial( {color: 0x638C26, map: earthTexture, side: THREE.DoubleSide} );
 const earth = new THREE.Mesh( geometry7, material7 );
 earth.position.set(0, -2.5, 2.5);
 earth.rotateX(1.570796);
 
+// add sun light
+const sunlight = new THREE.PointLight( 0xff0000, 1, 100 );
+light.position.set( 7, 7, 0 );
+const pointLightHelper = new THREE.PointLightHelper( sunlight, 1 );
+
+
+
 
 camera.position.set(0, 0, 5)
 
-scene.add( wall, wall2, wall3, wall4, roof, floor, earth, light )
+scene.add( wall, wall2, wall3, wall4, roof, floor, earth, light, sunlight, door, pointLightHelper )
 
 
 function animate() {
