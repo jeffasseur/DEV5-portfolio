@@ -1,7 +1,7 @@
 import './style.css'
 import * as THREE from 'three'
-import Wall from './src/Wall.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000)
@@ -92,6 +92,16 @@ const worldTexture = new THREE.TextureLoader().load('/flameworld.jpg');
 const worldMaterial = new THREE.MeshBasicMaterial( {color: 0xffffff, map: worldTexture, side: THREE.DoubleSide} );
 const worldSphere = new THREE.Mesh( world, worldMaterial );
 world.rotateX(1.570796);
+
+// add gltf model
+const url = './public/chinese_dragon/scene.gltf';
+const dragonLoader = new GLTFLoader();
+dragonLoader.load(url, (gltf) => {
+  const dragon = gltf.scene;
+  dragon.position.set(12, 12, 2);
+  scene.add(dragon);
+  console.log(dragon);
+});
 
 
 camera.position.set(5, 10, 30)
