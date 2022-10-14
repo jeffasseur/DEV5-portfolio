@@ -4,14 +4,14 @@ import Wall from './src/Wall.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
 const scene = new THREE.Scene()
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 1000)
+const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000)
 const renderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 document.body.appendChild(renderer.domElement)
 
 const controls = new OrbitControls(camera, renderer.domElement)
 
-const light = new THREE.AmbientLight( 0x000000 );
+const light = new THREE.AmbientLight( 0xffffff, 0.1 );
 
 const wallTexture = new THREE.TextureLoader().load('/bump-bricks.jpg')
 
@@ -65,10 +65,10 @@ floor.position.set(0, -2.5, 2.5);
 floor.rotateX(1.570796);
 
 // white card on the house
-const geometry9 = new THREE.PlaneGeometry( 0.5, 0.5);
+const geometry9 = new THREE.PlaneGeometry( 0.8, 0.5);
 const material9 = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
 const card = new THREE.Mesh( geometry9, material9 );
-card.position.set(1, -1, 5.2);
+card.position.set(1.2, -1, 5.2);
 
 // floor of the earth
 const geometry7 = new THREE.PlaneGeometry( 100, 100);
@@ -82,21 +82,28 @@ const earth = new THREE.Mesh( geometry7, material7 );
 earth.position.set(0, -2.5, 2.5);
 earth.rotateX(1.570796);
 
-// add sun light
-const sunlight = new THREE.PointLight( 0xff0000, 1, 100 );
-light.position.set( 10, 10, 10 );
+// add pointer light
+const pointLight = new THREE.PointLight( 0xffffff, 0.4, 100 );
+pointLight.position.set( 10, 10, 10 );
+
+// add flame world
+const world = new THREE.SphereGeometry( 100, 32, 32 );
+const worldTexture = new THREE.TextureLoader().load('/flameworld.jpg');
+const worldMaterial = new THREE.MeshBasicMaterial( {color: 0xffffff, map: worldTexture, side: THREE.DoubleSide} );
+const worldSphere = new THREE.Mesh( world, worldMaterial );
+world.rotateX(1.570796);
 
 
-camera.position.set(0, 0, 5)
+camera.position.set(5, 10, 30)
 
-scene.add( wall, wall2, wall3, wall4, roof, floor, earth, light, sunlight, door, card )
+scene.add( wall, wall2, wall3, wall4, roof, floor, earth, light, door, card, pointLight, worldSphere );
 
 
 function animate() {
   requestAnimationFrame( animate );
 
-  // cube.rotation.x += 0.01;
-  // cube.rotation.y += 0.01;
+  camera.rotation.x += 0.01;
+  camera.rotation.y += 0.01;
   controls.update();
 
   renderer.render( scene, camera );
