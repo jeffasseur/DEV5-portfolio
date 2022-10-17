@@ -11,7 +11,7 @@ document.body.appendChild(renderer.domElement)
 
 const controls = new OrbitControls(camera, renderer.domElement)
 
-const light = new THREE.AmbientLight( 0xffffff, 0.1 );
+const light = new THREE.AmbientLight( 0xffffff, 1 );
 
 const wallTexture = new THREE.TextureLoader().load('/bump-bricks.jpg')
 
@@ -71,7 +71,7 @@ const card = new THREE.Mesh( geometry9, material9 );
 card.position.set(1.2, -1, 5.2);
 
 // floor of the earth
-const geometry7 = new THREE.PlaneGeometry( 100, 100);
+const geometry7 = new THREE.PlaneGeometry( 200, 200);
 const earthTexture = new THREE.TextureLoader().load('/bump-grass.jpg');
 const material7 = new THREE.MeshPhongMaterial( {color: 0xff0000, side: THREE.DoubleSide} );
 material7.map = earthTexture;
@@ -97,13 +97,29 @@ world.rotateX(3);
 const url = '/chineseDragon/scene.gltf';
 const dragonLoader = new GLTFLoader();
 dragonLoader.load(url, (gltfScene) => {
-  let scale = 0.03;
-  gltfScene.scene.scale.set(scale, scale, scale);
-  gltfScene.scene.position.set(-5, -2.5, 5);
-  scene.add(gltfScene.scene);
+  const dragon = gltfScene.scene;
+  let scale = 0.02;
+  dragon.scale.set(scale, scale, scale);
+  dragon.position.set(-5, -2.5, 5);
+  // add the textures to dragon
+  scene.add(dragon);
   animate();
-  console.log(gltfScene.scene);
 });
+
+//load in tree gltf
+const treeUrl = '/tree/scene.gltf';
+const addTree = (x, z) => {
+  const treeLoader = new GLTFLoader();
+  treeLoader.load(treeUrl, (gltfScene) => {
+    const tree = gltfScene.scene;
+    let scale = 1;
+    tree.scale.set(scale, scale, scale);
+    tree.position.set(x, 6.2, z);
+    scene.add(tree);
+  });
+}
+
+
 
 camera.position.set(5, 10, 30)
 
@@ -121,3 +137,6 @@ function animate() {
 };
 
 animate();
+for(let i = 0; i < 15; i++) { 
+  addTree( Math.random() * 100, Math.random() * 100); 
+}
