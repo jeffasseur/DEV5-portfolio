@@ -121,20 +121,24 @@ const addTree = (x, z) => {
 
 
 
-camera.position.set(5, 10, 30)
+camera.position.set(50, 30, 130)
 
 scene.add( wall, wall2, wall3, wall4, roof, floor, earth, light, door, card, pointLight, worldSphere );
+
 
 
 function animate() {
   requestAnimationFrame( animate );
 
-  camera.rotation.x += 0.01;
-  camera.rotation.y += 0.01;
+  // animate camera
+  camera.position.x = Math.sin( Date.now() * 0.001 ) * 100;
+  camera.position.z = Math.cos( Date.now() * 0.001 ) * 100;
+
   controls.update();
 
   renderer.render( scene, camera );
 };
+
 
 animate();
 for(let i = 0; i < 15; i++) { 
