@@ -87,22 +87,22 @@ const pointLight = new THREE.PointLight( 0xffffff, 0.4, 100 );
 pointLight.position.set( 10, 10, 10 );
 
 // add flame world
-const world = new THREE.SphereGeometry( 100, 32, 32 );
+const world = new THREE.SphereGeometry( 200, 32, 32 );
 const worldTexture = new THREE.TextureLoader().load('/flameworld.jpg');
 const worldMaterial = new THREE.MeshBasicMaterial( {color: 0xffffff, map: worldTexture, side: THREE.DoubleSide} );
 const worldSphere = new THREE.Mesh( world, worldMaterial );
 world.rotateX(3);
 
 // add gltf model Chinese Dragon
-const url = '/chinese_dragon/scene.gltf';
+const url = '/chineseDragon/scene.gltf';
 const dragonLoader = new GLTFLoader();
 dragonLoader.load(url, (gltfScene) => {
-  // let scale = 5.6;
-  // const dragon = gltfScene;
-  // dragon.position.set(scale, scale, scale);
-  // dragon.scale.set(1, 1, 1);
+  let scale = 0.03;
+  gltfScene.scene.scale.set(scale, scale, scale);
+  gltfScene.scene.position.set(-5, -2.5, 5);
   scene.add(gltfScene.scene);
-  // console.log(dragon);
+  animate();
+  console.log(gltfScene.scene);
 });
 
 camera.position.set(5, 10, 30)
