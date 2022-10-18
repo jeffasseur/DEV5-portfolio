@@ -2,6 +2,8 @@ import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
 
 const scene = new THREE.Scene()
 const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 1000)
@@ -11,7 +13,7 @@ document.body.appendChild(renderer.domElement)
 
 const controls = new OrbitControls(camera, renderer.domElement)
 
-const light = new THREE.AmbientLight( 0xffffff, 1 );
+const light = new THREE.AmbientLight( 0xffffff, 0.5 );
 
 const wallTexture = new THREE.TextureLoader().load('/bump-bricks.jpg')
 
@@ -65,6 +67,21 @@ floor.position.set(0, -2.5, 2.5);
 floor.rotateX(1.570796);
 
 // white card on the house
+const textLoader = new FontLoader();
+textLoader.load('/node_modules/three/examples/fonts/helvetiker_regular.typeface.json', (font) => {
+  const textGeometry = new TextGeometry('Jef', {
+    font: font,
+    size: 0.25,
+    height: 0.01,
+    curveSegments: 12,
+    bevelEnabled: false,
+  });
+  const textMaterial = new THREE.MeshBasicMaterial({color: 0x000000});
+  const text = new THREE.Mesh(textGeometry, textMaterial);
+  text.position.set(0.9, -1.1, 5.2);
+  scene.add(text);
+  console.log(text);
+});
 const geometry9 = new THREE.PlaneGeometry( 0.8, 0.5);
 const material9 = new THREE.MeshBasicMaterial( {color: 0xffffff, side: THREE.DoubleSide} );
 const card = new THREE.Mesh( geometry9, material9 );
@@ -101,10 +118,25 @@ dragonLoader.load(url, (gltfScene) => {
   let scale = 0.02;
   dragon.scale.set(scale, scale, scale);
   dragon.position.set(-5, -2.5, 5);
+  console.log(dragon);
   // add the textures to dragon
   scene.add(dragon);
   animate();
 });
+
+// add glb model Chinese Dragon
+// const url = '/chinese_dragon.glb';
+// const dragonLoader = new GLTFLoader();
+// dragonLoader.load(url, (gltfScene) => {
+//   const dragon = gltfScene.scene;
+//   let scale = 0.02;
+//   dragon.scale.set(scale, scale, scale);
+//   dragon.position.set(-5, -2.5, 5);
+//   console.log(dragon);
+//   // add the textures to dragon
+//   scene.add(dragon);
+//   animate();
+// });
 
 //load in tree gltf
 const treeUrl = '/tree/scene.gltf';
@@ -130,9 +162,9 @@ scene.add( wall, wall2, wall3, wall4, roof, floor, earth, light, door, card, poi
 function animate() {
   requestAnimationFrame( animate );
 
-  // animate camera
-  camera.position.x = Math.sin( Date.now() * 0.001 ) * 100;
-  camera.position.z = Math.cos( Date.now() * 0.001 ) * 100;
+  // rotate the camera smooth
+  camera.position.x = Math.sin( Date.now() * 0.0005 ) * 100;
+  camera.position.z = Math.cos( Date.now() * 0.0005 ) * 100;
 
   controls.update();
 
