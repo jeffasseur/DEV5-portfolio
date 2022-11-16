@@ -61,8 +61,8 @@ export default class Clothing {
             console.log(data);
             const img = document.querySelector('#clothingPiece');
             const buyLink = document.querySelector('.clothing__buy');
-            img.src = data.results[0].images[0].url;
-            buyLink.href = data.baseUrl + data.results[0].linkPdp;
+            img.src = data.results[6].images[0].url;
+            buyLink.href = data.baseUrl + data.results[6].linkPdp;
         })
         .catch(err => {
             console.error(err);
