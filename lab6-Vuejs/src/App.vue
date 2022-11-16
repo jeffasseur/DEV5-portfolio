@@ -22,4 +22,7 @@
     grid-template-columns: 8fr 4fr;
     gap: 1em;
   }
+  .side {
+    padding-right: 1em;
+  }
 </style>
