@@ -1,0 +1,15 @@
+{
+    "status": "success",
+    "videos": [
+        {
+            "description": "No space on Metro? 🦄",
+            "username": "sami2bx",
+            "video": "https://vue-3-tiktok.vercel.app/video1.mp4"
+        },
+        {
+            "description": "Burger Disco Duty",
+            "username": "random112",
+            "video": "https://vue-3-tiktok.vercel.app/video2.mp4"
+        }
+    ]
+}
