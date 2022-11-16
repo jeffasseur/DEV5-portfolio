@@ -6,3 +6,4 @@
 * 3️⃣ [Lab 3](https://github.com/jeffasseur/DEV5-portfolio/tree/master/lab3-API)
 * 4️⃣ [Lab 4](https://github.com/jeffasseur/DEV5-portfolio/tree/master/lab4-ThreeJS)
 * 5️⃣ [Lab 5](https://github.com/jeffasseur/dev5-lab5)
+* 6️⃣ [Lab 6](https://github.com/jeffasseur/DEV5-portfolio/tree/master/lab6-Vuejs)
